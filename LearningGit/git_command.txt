@@ -3,7 +3,7 @@ git init/ 지역저장소 만들기
 
 git checkout fileName or 해시
 
-git commit --amend
+git commit --amend / 최근 커밋 수정
 git commit -m "message"
 
 git add fileName
