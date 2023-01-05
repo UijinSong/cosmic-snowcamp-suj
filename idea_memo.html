@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        
+    
+    </head>
+    <body>
+        <h1>아이디어 메모장</h1>
+
+        <!--pink 라디오 버튼-->
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="your_color" id="flexRadioDefault1" value="pink" checked>
+            <label class="form-check-label" for="flexRadioDefault1">
+              Pink
+            </label>
+          </div>
+
+        <!--gray 라디오 버튼-->
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="your_color" id="flexRadioDefault2" value="gray">
+            <label class="form-check-label" for="flexRadioDefault2">
+              Gray
+            </label>
+          </div>
+          
+
+          <!--입력 칸, 저장 버튼-->
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" id = "input_memo" placeholder="새로운 메모를 만들어보자" aria-label="새로운 메모를 만들어보자" aria-describedby="button-addon2">
+            <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick = add_memo()>저장</button>
+          </div>
+
+          <!--추가 되는 메모 카드 형식-->
+
+          <!--
+            
+          <div class="card">
+            <div class="card-header">
+              시간                              // 시간 넣을 곳
+            </div>
+            <div class="card-body">
+              <p class="card-text" id ="put_your_memo_here"></p>
+              <a href="#" class="btn btn-primary">삭제</a>
+            </div>
+          </div>
+          -->
+
+
+          <script>
+            
+
+            let input_memo = document.getElementById("input_memo"); //input_memo.value가 내가 입력한 내용
+
+            function add_memo(){
+                var rp_card = document.createElement('div');
+                var p_card = document.createElement('div');             //부모 카드 생성
+                p_card.setAttribute("id", "p");                         //부모 카드의 id를 p로 설정
+                p_card.setAttribute("class", "card");                   //부모 카드의 class를 card로 설정
+
+
+                var new_card_header = document.createElement('div');    //카드 헤더
+                new_card_header.setAttribute("class", "card-header");
+                
+                p_card.appendChild(new_card_header)                     //부모 카드에 카드 헤더 넣기
+                
+                const curr_time = new Date();                                //카드 헤더에 현재 시각 추가
+                new_card_header.innerHTML = curr_time;
+
+                const input_color_list = document.getElementsByName("your_color");   //내가 입력한 색을 바탕색으로 하기
+
+                input_color_list.forEach((node) => {
+                    if(node.checked)  {
+                        new_card_header.style.backgroundColor = node.value;
+                    }
+                })
+
+                var new_card_body = document.createElement('div');      //카드 보디
+                new_card_body.setAttribute("class", "card-body");
+               
+                var card_text_blank = document.createElement('p');              //내용 넣을 칸
+                card_text_blank.setAttribute("class", "card-text")
+                card_text_blank.innerHTML = input_memo.value;
+                new_card_body.appendChild(card_text_blank);
+
+                var card_del_button = document.createElement('a');              //삭제 버튼
+                card_del_button.setAttribute("href", "#");
+                card_del_button.setAttribute("class", "btn btn-primary");
+                card_del_button.setAttribute("id", "del_button");
+                card_del_button.innerHTML = "삭제";
+
+                card_del_button.addEventListener('click', del_memo);
+                function del_memo() {  	
+                    rp_card.removeChild(p_card);
+                }
+                new_card_body.appendChild(card_del_button);
+
+                p_card.appendChild(new_card_body);                       //부모 카드에 카드 보디 넣기
+
+                rp_card.appendChild(p_card);
+
+                document.body.appendChild(rp_card);                      //부모 카드를 전체 보디에 넣기
+
+            }
+          </script>
+    </body>
+</html>
