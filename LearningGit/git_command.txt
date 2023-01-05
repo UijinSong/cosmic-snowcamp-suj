@@ -1,0 +1,18 @@
+git commit --amend
+git commit -m "message"
+
+git add fileName
+vim t.txt
+rm -r fileName
+
+git log
+git log --stat
+
+git status
+git diff
+
+cd
+
+mkdir fileName
+
+
