@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <h1>생일 출력하기</h1>
+        
+        <h1 id = "index_name">0. 박정현, 1.복무창, 2.오민석, 3.한규원, 4.김도영, 5.김준호, 6.문희범</h1>
+        
+        <input type = "text" id="index" style = "display: inline">
+        <p style="display: inline">번호를 입력하시오</p>
+        <button onClick="print_birth()">출력</button> <!--출력 버튼을 누르면 내가 만든 함수가 작동함-->
+
+        <p id = "blank"></p> <!--지금은 공백이지만 이후에 생일이 언제인지 출력해줄 곳-->
+        
+        <script>
+
+            
+            async function print_birth(){
+                let input_id = document.getElementById("index");        // input_id.value는 내가 입력한 숫자임
+                const response = await fetch("https://my-json-server.typicode.com/smashh712/json_placeholder/members/" + input_id.value, {
+                    method: 'GET',
+                })
+                const data = await response.json();
+                    
+                const name = data.name;
+                const year = data.birth.substr(0,2);
+                const month = data.birth.substr(2,2);
+                const day = data.birth.substr(4,2);
+
+                document.getElementById("blank").innerText = name + "의 생일은 " + year + "년 " + month + "월 " + day + "일 입니다."
+            }
+        </script>
+    </body>
+</html>
