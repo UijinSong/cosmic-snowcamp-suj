@@ -1,7 +1,7 @@
 git config / 처음에 이름과 이메일 입력할 때
 git init/ 지역저장소 만들기
 
-git checkout 해시
+git checkout fileName or 해시
 
 git commit --amend
 git commit -m "message"
@@ -20,4 +20,6 @@ cd
 
 mkdir fileName
 
-
+git revert 해시
+git reset --hard 해시
+git reset HEAD^ / 가장 최근 커밋 취소
